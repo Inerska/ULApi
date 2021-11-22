@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WidgetIutNc.GUI.ViewModels
+namespace WidgetIutNc.Uwp.ViewModels
 {
     public class ViewModelBase
         : INotifyPropertyChanged
