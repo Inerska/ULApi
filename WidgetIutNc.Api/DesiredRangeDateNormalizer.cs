@@ -4,20 +4,15 @@ namespace WidgetIutNc.Api;
 
 public static class DesiredRangeDateNormalizer
 {
-    public static string GetNormalizedRangeDateWeek(DateTime? firstDayOfWeek = null)
+    public static Tuple<string, string> GetNormalizedRangeDateWeek(DateTime? firstDayOfWeek = null)
     {
-        // Si pas d'argument, je récupère la semaine actuelle
         firstDayOfWeek ??= DateTime.Today;
 
-        // Sinon je récupère firstDayOfWeek + 7
-        var rangeWeekDate = firstDayOfWeek.Value.AddDays(7);
+        var lastDayOfWeek = firstDayOfWeek.Value.AddDays(7);
 
-        // je retourne le string sous forme normalisé : YYYY-MM-DD
-
-        var wayO = rangeWeekDate.ToShortDateString();
-        var way1 = rangeWeekDate.ToString();
-
-        return "";
+        return Tuple.Create(
+            $"{firstDayOfWeek.Value.Year}/{firstDayOfWeek.Value.Month}/{firstDayOfWeek.Value.Day}",
+            $"{lastDayOfWeek.Year}/{lastDayOfWeek.Month}/{lastDayOfWeek.Day}");
     }
 }
 
