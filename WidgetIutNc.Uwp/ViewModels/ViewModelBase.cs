@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace WidgetIutNc.GUI.ViewModels
 {
     public class ViewModelBase
-    : INotifyPropertyChanged
+        : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
