@@ -350,4 +350,4 @@ MigrationBackup/
 .ionide/
 
 # appsettings configuration file from worker
-WidgetIutNc.Worker/appsettings.Development.json
+WidgetIutNc.Worker\appsettings.Development.json
