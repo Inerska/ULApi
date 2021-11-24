@@ -1,4 +1,4 @@
-﻿using WidgetIutNc.Api;
+﻿using WidgetIutNc.Uwp.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace WidgetIutNc.Uwp;
@@ -12,9 +12,6 @@ public sealed partial class MainPage
     public MainPage()
     {
         this.InitializeComponent();
-
-        var dbgRange = DesiredRangeDateNormalizer.GetNormalizedRangeDateWeek();
-
-        dbgTextBlock.Text = $"Hey + {dbgRange.Item1} - {dbgRange.Item2}";
+        this.DataContext = new MainPageViewModel();
     }
 }
