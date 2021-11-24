@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Autofac;
+using Microsoft.Extensions.Configuration;
+using System;
+using WidgetIutNc.Api;
+using WidgetIutNc.Uwp.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -10,8 +14,10 @@ namespace WidgetIutNc.Uwp
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App
+        : Application
     {
+        public IContainer Container { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -19,7 +25,21 @@ namespace WidgetIutNc.Uwp
         public App()
         {
             this.InitializeComponent();
+            this.Container = ConfigureServices();
             this.Suspending += OnSuspending;
+        }
+
+        private IContainer ConfigureServices()
+        {
+            var containerBuilder = new ContainerBuilder();
+
+            containerBuilder.RegisterType<IConfiguration>().AsSelf();
+            containerBuilder.RegisterType<UpdatedCalendarFileDownloaderService>().As<IUpdatedCalendarFileDownloaderService>();
+
+            // View Models
+            containerBuilder.RegisterType<MainPageViewModel>().AsSelf();
+
+            return containerBuilder.Build();
         }
 
         /// <summary>
@@ -29,13 +49,10 @@ namespace WidgetIutNc.Uwp
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
 
-            // Do not repeat app initialization when the Window already has content,
-            // just ensure that the window is active
-            if (rootFrame == null)
+            if (rootFrame is null)
             {
-                // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
@@ -49,16 +66,12 @@ namespace WidgetIutNc.Uwp
                 Window.Current.Content = rootFrame;
             }
 
-            if (e.PrelaunchActivated == false)
+            if (!e.PrelaunchActivated)
             {
-                if (rootFrame.Content == null)
+                if (rootFrame.Content is null)
                 {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
-                // Ensure the current window is active
                 Window.Current.Activate();
             }
         }
