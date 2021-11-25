@@ -1,9 +1,7 @@
-﻿using Ical.Net;
-using ReactiveUI;
+﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System.Reactive;
 using WidgetIutNc.Api;
-using WidgetIutNc.Api.Services;
 
 namespace WidgetIutNc.ViewModels;
 
@@ -16,7 +14,6 @@ public class MainPageViewModel
     {
         RefreshDataAsync = ReactiveCommand.CreateFromTask(async () =>
         {
-
             var calendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
             var parsedCalendar = calendarParserService.Parse(calendar.Events[1]);
 
