@@ -24,6 +24,8 @@ namespace WidgetIutNc.Uwp
         /// </summary>
         public App()
         {
+            Services = ConfigureServices();
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
