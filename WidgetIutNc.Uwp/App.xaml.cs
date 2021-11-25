@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using WidgetIutNc.Api;
 using WidgetIutNc.ViewModels;
@@ -18,7 +17,7 @@ namespace WidgetIutNc.Uwp
         : Application
     {
         public new static App Current => Application.Current as App;
-        private readonly IHost _host;
+        public IServiceProvider Services { get; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -27,27 +26,20 @@ namespace WidgetIutNc.Uwp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            _host = Host.CreateDefaultBuilder()
-                .ConfigureServices((_, services) => ConfigureServices(services))
-                .Build();
         }
 
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services
+        /// <summary>
+        /// Inversion of Control container which's handling dependency injection through the project.
+        /// </summary>
+        /// <returns>Builed service provider</returns>
+        public IServiceProvider ConfigureServices()
+            => new ServiceCollection()
                 .AddSingleton<IUpdatedCalendarFileDownloaderService, UpdatedCalendarFileDownloaderService>()
-                .AddSingleton<MainPageViewModel>();
-            ;
-        }
 
+                .AddTransient<MainPageViewModel>()
+            .BuildServiceProvider();
 
-        protected override async void OnWindowCreated(WindowCreatedEventArgs args)
-        {
-            await _host.StartAsync();
-
-            base.OnWindowCreated(args);
-        }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

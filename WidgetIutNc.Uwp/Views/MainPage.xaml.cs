@@ -1,4 +1,5 @@
-﻿using WidgetIutNc.ViewModels;
+﻿using Microsoft.Extensions.DependencyInjection;
+using WidgetIutNc.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace WidgetIutNc.Uwp;
@@ -9,13 +10,9 @@ namespace WidgetIutNc.Uwp;
 public sealed partial class MainPage
     : Page
 {
-    private readonly MainPageViewModel _viewModel;
-    public MainPage(MainPageViewModel viewModel)
+    public MainPage()
     {
         this.InitializeComponent();
-
-        _viewModel = viewModel;
-
-        this.DataContext = _viewModel;
+        this.DataContext = App.Current.Services.GetService<MainPageViewModel>();
     }
 }
