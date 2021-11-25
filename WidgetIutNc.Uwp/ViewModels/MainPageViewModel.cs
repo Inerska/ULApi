@@ -7,7 +7,7 @@ using WidgetIutNc.Api;
 namespace WidgetIutNc.Uwp.ViewModels;
 
 public class MainPageViewModel
-    : ViewModelBase
+    : ReactiveObject
 {
     private readonly IUpdatedCalendarFileDownloaderService _calendarFileDownloaderService;
 
