@@ -1,18 +1,25 @@
-﻿using System;
-using System.ComponentModel;
-
-namespace WidgetIutNc.Api.Entities
+﻿namespace WidgetIutNc.Api.Entities;
+public class ParsedConcreteCalendar
 {
-    public record class ParsedConcreteCalendar(
-        string StartDate,
-        string EndDate,
-        string Summary,
-        string Location,
-        string Description);
+    public ParsedConcreteCalendar(
+        string startDate, 
+        string endDate, 
+        string summary, 
+        string location, 
+        string description)
+    {
+        StartDate = startDate;
+        EndDate = endDate;
+        Summary = summary;
+        Location = location;
+        Description = description;
+    }
+
+    public string StartDate { get; set; }
+    public string EndDate { get; set; }
+    public string Summary { get; set; }
+    public string Location { get; set; }
+    public string Description { get; set; }
 }
 
-namespace System.Runtime.CompilerServices
-{
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class IsExternalInit { }
-}
+
