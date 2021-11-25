@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using WidgetIutNc.Api;
+using WidgetIutNc.Api.Services;
 using WidgetIutNc.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -38,6 +39,7 @@ namespace WidgetIutNc.Uwp
         public IServiceProvider ConfigureServices()
             => new ServiceCollection()
                 .AddSingleton<IUpdatedCalendarFileDownloaderService, UpdatedCalendarFileDownloaderService>()
+                .AddSingleton<ICalendarParserService, CalendarParserService>()
 
                 .AddTransient<MainPageViewModel>()
             .BuildServiceProvider();
