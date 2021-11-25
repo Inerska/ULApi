@@ -13,7 +13,6 @@ public sealed partial class MainPage
     public MainPage()
     {
         this.InitializeComponent();
-        var container = (Windows.UI.Xaml.Application.Current as App)?.Container;
-        this.DataContext = ActivatorUtilities.GetServiceOrCreateInstance(container, typeof(MainPageViewModel));
+        this.DataContext = App.Current.ServicesProvider.GetService<MainPageViewModel>();
     }
 }

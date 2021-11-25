@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using WidgetIutNc.Api;
+using WidgetIutNc.Uwp.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -16,7 +17,8 @@ namespace WidgetIutNc.Uwp
     sealed partial class App
         : Application
     {
-        public IServiceProvider Container { get; set; }
+        public new static App Current => Application.Current as App;
+        public IServiceProvider ServicesProvider { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -24,17 +26,22 @@ namespace WidgetIutNc.Uwp
         public App()
         {
             this.InitializeComponent();
-            this.Container = ConfigureServices();
+            this.ServicesProvider = ConfigureServices();
             this.Suspending += OnSuspending;
         }
 
-        private IServiceProvider ConfigureServices()
+        private static IServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
+
             services
                 .AddSingleton<IUpdatedCalendarFileDownloaderService, UpdatedCalendarFileDownloaderService>()
-                .AddSingleton<IConfiguration>();
+                .AddSingleton<IConfiguration>()
+
+
+                .AddTransient<MainPageViewModel>()
+                ;
 
 
             return services.BuildServiceProvider();
