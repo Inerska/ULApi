@@ -1,8 +1,7 @@
-﻿using Autofac;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using WidgetIutNc.Api;
-using WidgetIutNc.Uwp.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -17,7 +16,7 @@ namespace WidgetIutNc.Uwp
     sealed partial class App
         : Application
     {
-        public IContainer Container { get; set; }
+        public IServiceProvider Container { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -29,17 +28,17 @@ namespace WidgetIutNc.Uwp
             this.Suspending += OnSuspending;
         }
 
-        private IContainer ConfigureServices()
+        private IServiceProvider ConfigureServices()
         {
-            var containerBuilder = new ContainerBuilder();
+            var services = new ServiceCollection();
 
-            containerBuilder.RegisterType<IConfiguration>().AsSelf();
-            containerBuilder.RegisterType<UpdatedCalendarFileDownloaderService>().As<IUpdatedCalendarFileDownloaderService>();
+            services
+                .AddSingleton<IUpdatedCalendarFileDownloaderService, UpdatedCalendarFileDownloaderService>()
+                .AddSingleton<IConfiguration>();
 
-            // View Models
-            containerBuilder.RegisterType<MainPageViewModel>().AsSelf();
 
-            return containerBuilder.Build();
+            return services.BuildServiceProvider();
+
         }
 
         /// <summary>
