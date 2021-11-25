@@ -4,7 +4,7 @@ using ReactiveUI.Fody.Helpers;
 using System.Reactive;
 using WidgetIutNc.Api;
 
-namespace WidgetIutNc.Uwp.ViewModels;
+namespace WidgetIutNc.ViewModels;
 
 public class MainPageViewModel
     : ReactiveObject

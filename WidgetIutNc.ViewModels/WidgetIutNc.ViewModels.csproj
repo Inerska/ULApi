@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ReactiveUI" Version="16.3.10" />
+    <PackageReference Include="ReactiveUI.Fody" Version="16.3.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WidgetIutNc.Api\WidgetIutNc.Api.csproj" />
+  </ItemGroup>
+
+</Project>

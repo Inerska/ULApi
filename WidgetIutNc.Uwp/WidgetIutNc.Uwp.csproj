@@ -121,7 +121,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -188,6 +187,10 @@
     <ProjectReference Include="..\WidgetIutNc.Api\WidgetIutNc.Api.csproj">
       <Project>{81f7ce38-8712-40aa-ab30-c85eda25fbd8}</Project>
       <Name>WidgetIutNc.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WidgetIutNc.ViewModels\WidgetIutNc.ViewModels.csproj">
+      <Project>{1a6a5a05-fc27-4cb8-be2e-0e3ac9a15ab2}</Project>
+      <Name>WidgetIutNc.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

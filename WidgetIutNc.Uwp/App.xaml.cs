@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using System;
 using WidgetIutNc.Api;
-using WidgetIutNc.Uwp.ViewModels;
+using WidgetIutNc.ViewModels;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;

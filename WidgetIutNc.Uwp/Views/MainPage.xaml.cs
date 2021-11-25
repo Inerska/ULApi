@@ -1,4 +1,4 @@
-﻿using WidgetIutNc.Uwp.ViewModels;
+﻿using WidgetIutNc.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace WidgetIutNc.Uwp;
