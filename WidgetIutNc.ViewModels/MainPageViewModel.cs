@@ -14,17 +14,14 @@ public class MainPageViewModel
     public MainPageViewModel(IUpdatedCalendarFileDownloaderService calendarFileDownloaderService)
     {
         _calendarFileDownloaderService = calendarFileDownloaderService;
+        RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => await _calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true));
+        RefreshDataAsync.BindTo(this, x => x.Description);
+
     }
 
     [Reactive]
     public string Description { get; set; }
 
     public ReactiveCommand<Unit, Calendar> RefreshDataAsync { get; }
-
-    public MainPageViewModel()
-    {
-        RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => await _calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true));
-        RefreshDataAsync.BindTo(this, x => x.Description);
-    }
 }
 
