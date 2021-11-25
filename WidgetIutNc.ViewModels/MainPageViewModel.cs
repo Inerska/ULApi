@@ -1,7 +1,9 @@
 ﻿using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using System.Collections.Generic;
 using System.Reactive;
 using WidgetIutNc.Api;
+using WidgetIutNc.Api.Entities;
 
 namespace WidgetIutNc.ViewModels;
 
@@ -14,17 +16,22 @@ public class MainPageViewModel
     {
         RefreshDataAsync = ReactiveCommand.CreateFromTask(async () =>
         {
-            var calendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
-            var parsedCalendar = calendarParserService.Parse(calendar.Events[1]);
+            var updatedCalendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
+            var parsedCalendarEvents = new List<ParsedConcreteCalendar>();
 
-            return parsedCalendar.ToString();
+            foreach(var @event in updatedCalendar.Events)
+            {
+                parsedCalendarEvents.Add(calendarParserService.Parse(@event));
+            }
+
+            return parsedCalendarEvents;
         });
-        RefreshDataAsync.BindTo(this, x => x.Description);
+        RefreshDataAsync.BindTo(this, x => x.Calendar);
     }
 
     [Reactive]
-    public string Description { get; set; }
+    public List<ParsedConcreteCalendar> Calendar { get; set; }
 
-    public ReactiveCommand<Unit, string> RefreshDataAsync { get; }
+    public ReactiveCommand<Unit, List<ParsedConcreteCalendar>> RefreshDataAsync { get; }
 }
 
