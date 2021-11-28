@@ -58,9 +58,7 @@ sealed partial class App
     /// <param name="e">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
-        var rootFrame = Window.Current.Content as Frame;
-
-        if (rootFrame is null)
+        if (Window.Current.Content is not Frame rootFrame)
         {
             rootFrame = new Frame();
 
@@ -90,10 +88,7 @@ sealed partial class App
     /// </summary>
     /// <param name="sender">The Frame which failed navigation</param>
     /// <param name="e">Details about the navigation failure</param>
-    void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
-    {
-        throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
-    }
+    void OnNavigationFailed(object sender, NavigationFailedEventArgs e) => throw new Exception($"Failed to load Page {e.SourcePageType.FullName}");
 
     /// <summary>
     /// Invoked when application execution is being suspended.  Application state is saved
