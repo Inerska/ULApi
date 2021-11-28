@@ -36,7 +36,6 @@ sealed partial class App
         this.Suspending += OnSuspending;
     }
 
-
     /// <summary>
     /// Inversion of Control container which's handling dependency injection through the project.
     /// </summary>
