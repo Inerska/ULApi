@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetIutNc.Uwp", "WidgetIu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WidgetIutNc.Api", "WidgetIutNc.Api\WidgetIutNc.Api.csproj", "{81F7CE38-8712-40AA-AB30-C85EDA25FBD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WidgetIutNc.ViewModels", "WidgetIutNc.ViewModels\WidgetIutNc.ViewModels.csproj", "{1A6A5A05-FC27-4CB8-BE2E-0E3AC9A15AB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WidgetIutNc.ViewModels", "WidgetIutNc.ViewModels\WidgetIutNc.ViewModels.csproj", "{1A6A5A05-FC27-4CB8-BE2E-0E3AC9A15AB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{560DD909-50E0-4AA7-B1AB-349C71D313BE}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

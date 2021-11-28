@@ -352,3 +352,4 @@ MigrationBackup/
 # appsettings configuration file from worker
 WidgetIutNc.Worker/appsettings.Development.json
 /WidgetIutNc.Api/AppSecretsProviderService.cs
+/.editorconfig
