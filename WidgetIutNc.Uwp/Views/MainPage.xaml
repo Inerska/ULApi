@@ -8,11 +8,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <ListBox x:Name="ScheduleTimeRoot" ItemsSource="{Binding Calendar}">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding}"/>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <StackPanel>
+        <Button Command="{Binding RefreshDataAsync}" Content="Refresh"/>
+        <ListBox x:Name="ScheduleTimeRoot" ItemsSource="{Binding Calendar}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
 </Page>

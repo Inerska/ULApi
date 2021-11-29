@@ -18,24 +18,28 @@ public class MainPageViewModel
         IUpdatedCalendarFileDownloaderService calendarFileDownloaderService,
         ICalendarParserService calendarParserService)
     {
-        RefreshDataAsync = ReactiveCommand.CreateFromTask(async () =>
-        {
+        /*RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => {
             var updatedCalendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
             var parsedCalendarEvents = new List<ParsedConcreteCalendar>();
 
-            foreach(var @event in updatedCalendar.Events)
+            foreach (var @event in updatedCalendar.Events)
             {
                 parsedCalendarEvents.Add(calendarParserService.Parse(@event));
             }
 
             return parsedCalendarEvents;
+        });*/
+        RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => {
+            var updatedCalendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
+            return new List<string> { "VM1", "VM2", "VM3" };
         });
         RefreshDataAsync.BindTo(this, x => x.Calendar);
     }
 
     [Reactive]
-    public List<ParsedConcreteCalendar> Calendar { get; set; }
+    public List<string> Calendar { get; set; }
+    //public List<ParsedConcreteCalendar> Calendar { get; set; }
 
-    public ReactiveCommand<Unit, List<ParsedConcreteCalendar>> RefreshDataAsync { get; }
+    public ReactiveCommand<Unit, List<string>> RefreshDataAsync { get; }
 }
 
