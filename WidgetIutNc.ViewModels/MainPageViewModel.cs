@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Reactive;
 using WidgetIutNc.Api;
 using WidgetIutNc.Api.Entities;
+using Windows.UI.Popups;
 
 namespace WidgetIutNc.ViewModels;
 
@@ -18,7 +19,7 @@ public class MainPageViewModel
         IUpdatedCalendarFileDownloaderService calendarFileDownloaderService,
         ICalendarParserService calendarParserService)
     {
-        /*RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => {
+        RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => {
             var updatedCalendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
             var parsedCalendarEvents = new List<ParsedConcreteCalendar>();
 
@@ -28,18 +29,13 @@ public class MainPageViewModel
             }
 
             return parsedCalendarEvents;
-        });*/
-        RefreshDataAsync = ReactiveCommand.CreateFromTask(async () => {
-            var updatedCalendar = await calendarFileDownloaderService.GetUpdatedCalendarFileAsync().ConfigureAwait(true);
-            return new List<string> { "VM1", "VM2", "VM3" };
         });
         RefreshDataAsync.BindTo(this, x => x.Calendar);
     }
 
     [Reactive]
-    public List<string> Calendar { get; set; }
-    //public List<ParsedConcreteCalendar> Calendar { get; set; }
+    public List<ParsedConcreteCalendar> Calendar { get; set; }
 
-    public ReactiveCommand<Unit, List<string>> RefreshDataAsync { get; }
+    public ReactiveCommand<Unit, List<ParsedConcreteCalendar>> RefreshDataAsync { get; }
 }
 
