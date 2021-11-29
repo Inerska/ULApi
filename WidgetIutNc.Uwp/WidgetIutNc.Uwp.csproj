@@ -5,12 +5,12 @@
     <LangVersion>latest</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{E405BB3D-02B7-4B45-B370-3244D907A4A5}</ProjectGuid>
+    <ProjectGuid>{19C2B513-548D-47AB-88FC-3EF61563253C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WidgetIutNc.Uwp</RootNamespace>
     <AssemblyName>WidgetIutNc.Uwp</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>fr-FR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
@@ -30,7 +30,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
-    <Optimize>true</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -163,28 +162,16 @@
       <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.13</Version>
+      <Version>6.2.12</Version>
     </PackageReference>
-    <PackageReference Include="ReactiveUI">
-      <Version>16.3.10</Version>
-    </PackageReference>
-    <PackageReference Include="ReactiveUI.Fody">
-      <Version>16.3.10</Version>
-    </PackageReference>
-    <PackageReference Include="ReactiveUI.Uwp">
-      <Version>16.3.10</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WidgetIutNc.Api\WidgetIutNc.Api.csproj">
-      <Project>{81f7ce38-8712-40aa-ab30-c85eda25fbd8}</Project>
+      <Project>{81F7CE38-8712-40AA-AB30-C85EDA25FBD8}</Project>
       <Name>WidgetIutNc.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\WidgetIutNc.ViewModels\WidgetIutNc.ViewModels.csproj">
-      <Project>{1a6a5a05-fc27-4cb8-be2e-0e3ac9a15ab2}</Project>
+      <Project>{1A6A5A05-FC27-4CB8-BE2E-0E3AC9A15AB2}</Project>
       <Name>WidgetIutNc.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>

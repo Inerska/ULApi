@@ -17,30 +17,28 @@ using Windows.UI.Xaml.Navigation;
 namespace WidgetIutNc.Uwp;
 
 /// <summary>
-/// Provides application-specific behavior to supplement the default Application class.
 /// </summary>
-sealed partial class App
-        : Application
+public sealed partial class App
+    : Application
 {
     public new static App Current => Application.Current as App;
+
     public IServiceProvider Services { get; }
+
+
     /// <summary>
-    /// Initializes the singleton application object.  This is the first line of authored code
-    /// executed, and as such is the logical equivalent of main() or WinMain().
+    /// Initialise l'objet d'application de singleton.  Il s'agit de la première ligne du code créé
+    /// à être exécutée. Elle correspond donc à l'équivalent logique de main() ou WinMain().
     /// </summary>
     public App()
     {
         Services = ConfigureServices();
 
-        this.InitializeComponent();
-        this.Suspending += OnSuspending;
+        InitializeComponent();
+        Suspending += OnSuspending;
     }
 
-    /// <summary>
-    /// Inversion of Control container which's handling dependency injection through the project.
-    /// </summary>
-    /// <returns>Builed service provider</returns>
-    public IServiceProvider ConfigureServices()
+    private IServiceProvider ConfigureServices()
         => new ServiceCollection()
             .AddSingleton<IUpdatedCalendarFileDownloaderService, UpdatedCalendarFileDownloaderService>()
             .AddSingleton<ICalendarParserService, CalendarParserService>()
@@ -49,26 +47,28 @@ sealed partial class App
             .AddTransient<ScheduleCellViewModel>()
         .BuildServiceProvider();
 
-
     /// <summary>
-    /// Invoked when the application is launched normally by the end user.  Other entry points
-    /// will be used such as when the application is launched to open a specific file.
+    /// Invoqué lorsque l'application est lancée normalement par l'utilisateur final.  D'autres points d'entrée
+    /// seront utilisés par exemple au moment du lancement de l'application pour l'ouverture d'un fichier spécifique.
     /// </summary>
-    /// <param name="e">Details about the launch request and process.</param>
+    /// <param name="e">Détails concernant la requête et le processus de lancement.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs e)
     {
+        // Ne répétez pas l'initialisation de l'application lorsque la fenêtre comporte déjà du contenu,
+        // assurez-vous juste que la fenêtre est active
         if (Window.Current.Content is not Frame rootFrame)
         {
+            // Créez un Frame utilisable comme contexte de navigation et naviguez jusqu'à la première page
             rootFrame = new Frame();
 
             rootFrame.NavigationFailed += OnNavigationFailed;
 
             if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
             {
-                //TODO: Load state from previously suspended application
+                //TODO: chargez l'état de l'application précédemment suspendue
             }
 
-            // Place the frame in the current Window
+            // Placez le frame dans la fenêtre active
             Window.Current.Content = rootFrame;
         }
 
@@ -76,31 +76,34 @@ sealed partial class App
         {
             if (rootFrame.Content is null)
             {
+                // Quand la pile de navigation n'est pas restaurée, accédez à la première page,
+                // puis configurez la nouvelle page en transmettant les informations requises en tant que
+                // paramètre
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+            // Vérifiez que la fenêtre actuelle est active
             Window.Current.Activate();
         }
     }
 
     /// <summary>
-    /// Invoked when Navigation to a certain page fails
+    /// Appelé lorsque la navigation vers une page donnée échoue
     /// </summary>
-    /// <param name="sender">The Frame which failed navigation</param>
-    /// <param name="e">Details about the navigation failure</param>
-    void OnNavigationFailed(object sender, NavigationFailedEventArgs e) => throw new Exception($"Failed to load Page {e.SourcePageType.FullName}");
+    /// <param name="sender">Frame à l'origine de l'échec de navigation.</param>
+    /// <param name="e">Détails relatifs à l'échec de navigation</param>
+    void OnNavigationFailed(object sender, NavigationFailedEventArgs e) => throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
 
     /// <summary>
-    /// Invoked when application execution is being suspended.  Application state is saved
-    /// without knowing whether the application will be terminated or resumed with the contents
-    /// of memory still intact.
+    /// Appelé lorsque l'exécution de l'application est suspendue.  L'état de l'application est enregistré
+    /// sans savoir si l'application pourra se fermer ou reprendre sans endommager
+    /// le contenu de la mémoire.
     /// </summary>
-    /// <param name="sender">The source of the suspend request.</param>
-    /// <param name="e">Details about the suspend request.</param>
+    /// <param name="sender">Source de la requête de suspension.</param>
+    /// <param name="e">Détails de la requête de suspension.</param>
     private void OnSuspending(object sender, SuspendingEventArgs e)
     {
         var deferral = e.SuspendingOperation.GetDeferral();
-        //TODO: Save application state and stop any background activity
+        //TODO: enregistrez l'état de l'application et arrêtez toute activité en arrière-plan
         deferral.Complete();
     }
 }
-

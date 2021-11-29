@@ -9,7 +9,8 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid>
-
-    </Grid>
+    <StackPanel Background="Red" Width="200" Height="200">
+        <TextBlock Text="Entrée : "/>
+        <TextBlock Text="{Binding UserInput}" Foreground="White" FontSize="20"/>
+    </StackPanel>
 </UserControl>

@@ -2,16 +2,22 @@
 // Licensed under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
+using Microsoft.Extensions.DependencyInjection;
+using ReactiveUI.Fody.Helpers;
+using WidgetIutNc.ViewModels.Controls;
 using Windows.UI.Xaml.Controls;
 
-// Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page https://go.microsoft.com/fwlink/?LinkId=234236
-
 namespace WidgetIutNc.Uwp.Controls;
+
 public sealed partial class ScheduleCell
-    : UserControl
+        : UserControl
 {
     public ScheduleCell()
     {
-        this.InitializeComponent();
+        InitializeComponent();
+        DataContext = App.Current.Services.GetService<ScheduleCellViewModel>();
     }
+
+    [Reactive]
+    public string UserInput { get; set; }
 }

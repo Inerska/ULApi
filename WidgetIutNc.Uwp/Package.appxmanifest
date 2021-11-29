@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="722f18be-d697-4eaf-993f-6d589fe07751"
-    Publisher="CN=Alexis C. GRIDEL"
+    Name="01ccd98b-5072-4bfc-8ac6-cb9ced92af62"
+    Publisher="CN=perso"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="722f18be-d697-4eaf-993f-6d589fe07751" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="01ccd98b-5072-4bfc-8ac6-cb9ced92af62" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>WidgetIutNc.Uwp</DisplayName>
-    <PublisherDisplayName>Alexis C. GRIDEL</PublisherDisplayName>
+    <PublisherDisplayName>perso</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -39,8 +39,6 @@
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
-        <uap:InitialRotationPreference>
-          <uap:Rotation Preference="portrait"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
