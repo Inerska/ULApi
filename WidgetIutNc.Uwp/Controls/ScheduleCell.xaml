@@ -9,8 +9,11 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel Background="Red" Width="200" Height="200">
-        <TextBlock Text="Entrée : "/>
-        <TextBlock Text="{Binding UserInput}" Foreground="White" FontSize="20"/>
+    <StackPanel Width="400" Height="300" BorderThickness="10, 1, 1, 1"  BorderBrush="White" Padding="10 0 0 0">
+        <TextBlock Text="{Binding StartDate}"/>
+        <TextBlock Text="{Binding EndDate}"/>
+        <TextBlock Text="{Binding Location}"/>
+        <TextBlock Text="{Binding Description}"/>
+        <TextBlock Text="{Binding Summary}"/>
     </StackPanel>
 </UserControl>

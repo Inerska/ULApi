@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Reactive;
 using WidgetIutNc.Api;
 using WidgetIutNc.Api.Entities;
-using Windows.UI.Popups;
 
 namespace WidgetIutNc.ViewModels;
 

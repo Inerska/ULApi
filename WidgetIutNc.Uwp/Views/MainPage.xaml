@@ -13,13 +13,7 @@
         <ListBox x:Name="ScheduleTimeRoot" ItemsSource="{Binding Calendar}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding StartDate}"/>
-                        <TextBlock Text="{Binding EndDate}"/>
-                        <TextBlock Text="{Binding Summary}"/>
-                        <TextBlock Text="{Binding Location}"/>
-                        <TextBlock Text="{Binding Description}"/>
-                    </StackPanel>
+                    <controls:ScheduleCell DataContext="{Binding}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
