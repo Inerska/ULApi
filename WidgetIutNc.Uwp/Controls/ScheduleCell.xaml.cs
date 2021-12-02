@@ -55,6 +55,5 @@ public partial class ScheduleCell
     {
         DataContext = this;
         InitializeComponent();
-        //DataContext = App.Current.Services.GetService<ScheduleCellViewModel>();
     }
 }
