@@ -353,3 +353,4 @@ MigrationBackup/
 WidgetIutNc.Worker/appsettings.Development.json
 /WidgetIutNc.Api/AppSecretsProviderService.cs
 /.editorconfig
+/.idea/.idea.WidgetIutNc/.idea
