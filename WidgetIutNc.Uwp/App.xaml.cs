@@ -44,7 +44,6 @@ public sealed partial class App
             .AddSingleton<ICalendarParserService, CalendarParserService>()
 
             .AddTransient<MainPageViewModel>()
-            .AddTransient<ScheduleCellViewModel>()
         .BuildServiceProvider();
 
     /// <summary>
