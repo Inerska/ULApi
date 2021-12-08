@@ -7,7 +7,6 @@ using System;
 using WidgetIutNc.Api;
 using WidgetIutNc.Api.Services;
 using WidgetIutNc.ViewModels;
-using WidgetIutNc.ViewModels.Controls;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
