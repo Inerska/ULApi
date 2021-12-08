@@ -2,9 +2,11 @@
 // Licensed under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-namespace WidgetIutNc.Api.Services;
-public class StudentGroupScrapperService
-    : IStudentGroupScrapperService
-{
+using System.Collections.Generic;
+using WidgetIutNc.Api.Entities;
 
+namespace WidgetIutNc.Api;
+public interface IStudentGroupScraperService
+{
+    public IEnumerable<StudentGroup> Scrap();
 }
