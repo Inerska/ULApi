@@ -19,14 +19,13 @@ public class UpdatedCalendarFileDownloaderService
         var baseUrl = AppSecretsProviderService.API_BASE_URL;
         var remoteUri = baseUrl + $"&firstDate={firstDate}&lastDate={lastDate}";
         var url = new Uri(remoteUri);
-
-        var handler = new HttpClientHandler()
-        {
+        var handler = new HttpClientHandler() {
             AllowAutoRedirect = false
         };
         using var client = new HttpClient(handler);
         var responseString = await client.GetStringAsync(url);
         var calendar = Calendar.Load(responseString);
+
         return calendar ??
             throw new Exception("Cannot load load responseString during calendar parsing.");
     }
