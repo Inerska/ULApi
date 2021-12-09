@@ -9,7 +9,10 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
+app.MapGet("/twit", () => "Hey");
 
+app.UseHttpMethodOverride();
+app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
