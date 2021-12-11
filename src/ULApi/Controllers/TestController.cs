@@ -12,8 +12,8 @@ public class TestController
     : Controller
 {
     [HttpGet]
-    public string[] GetSampleDatasString()
+    public ActionResult GetSampleDatasString()
     {
-        return new string[] { "hey", "sir" };
+        return Ok(new string[]{ "hey", "sir" });
     }
 }
