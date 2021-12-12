@@ -19,7 +19,7 @@ public interface IBusinessFetcherService<TItem>
     /// <summary>
     /// Asynchronous fetching data method.
     /// </summary>
-    /// <returns>Nullable task of a fetching entity referenced as model.</returns>
-    Task<TItem?> FetchAsync();
+    /// <returns>Task of a fetching entity referenced as model.</returns>
+    Task<TItem> FetchAsync();
 }
 
