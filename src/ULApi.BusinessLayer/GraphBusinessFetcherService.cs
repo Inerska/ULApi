@@ -29,7 +29,7 @@ public class GraphBusinessFetcherService<TItem>
         var client = new RestClient();
         var request = new RestRequest
         {
-            Method = Method.POST,
+            Method = Method.GET,
             Resource = apiUrl
         };
         var query = @"query factuel {
