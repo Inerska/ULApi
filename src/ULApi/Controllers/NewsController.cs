@@ -10,17 +10,13 @@ namespace ULApi.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-public class WeatherForecastController
+public class NewsController
     : ControllerBase
 {
-    private readonly ILogger<WeatherForecastController> _logger;
     private readonly IConfiguration _configuration;
 
-    public WeatherForecastController(
-        ILogger<WeatherForecastController> logger,
-        IConfiguration configuration)
+    public NewsController(IConfiguration configuration)
     {
-        _logger = logger;
         _configuration = configuration;
     }
 

@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ULApi.Tests", "test\ULApi.Tests\ULApi.Tests.csproj", "{2457AFFC-13C7-44F7-A026-C1AF003D54C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ULApi.Test", "test\ULApi.Tests\ULApi.Test.csproj", "{2457AFFC-13C7-44F7-A026-C1AF003D54C9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ULApi.BusinessLayer", "src\ULApi.BusinessLayer\ULApi.BusinessLayer.csproj", "{3AD34133-F905-456D-912D-3F1AF7A77BE5}"
 EndProject
