@@ -21,9 +21,12 @@ public class TestSetup
                                        path: "appsettings.json",
                                        optional: false,
                                        reloadOnChange: true)
+                                .AddUserSecrets("99d0f1c0-830e-49f3-ba75-3d632df8214f")
+                                .AddEnvironmentVariables()
                                 .Build();
 
         serviceCollection
+                         .AddSingleton<IConfiguration>(configuration)
                          .AddSingleton(typeof(GraphBusinessFetcherService<>))
                          .AddTransient<NewsController, NewsController>()
                          ;
