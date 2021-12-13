@@ -4,7 +4,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ULApi.Services;
+namespace ULApi.BusinessLayer;
 
 public static class Setup
 {

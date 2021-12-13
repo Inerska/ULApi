@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\ULApi.BusinessLayer\ULApi.BusinessLayer.csproj" />
     <ProjectReference Include="..\..\src\ULApi\ULApi.csproj" />
   </ItemGroup>
 

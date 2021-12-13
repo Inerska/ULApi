@@ -4,7 +4,7 @@
 
 using Newtonsoft.Json;
 
-namespace ULApi.Services.Models;
+namespace ULApi.BusinessLayer.Models;
 
 /// <summary>
 /// Represents a News entity.

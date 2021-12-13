@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using RestSharp;
 
-namespace ULApi.Services;
+namespace ULApi.BusinessLayer;
 
 /// <summary>
 /// Concrete implementation of Graph strategy business layer fetcher service.
@@ -27,8 +27,7 @@ public class GraphBusinessFetcherService<TItem>
         ArgumentNullException.ThrowIfNull(apiUrl);
 
         var client = new RestClient();
-        var request = new RestRequest
-        {
+        var request = new RestRequest {
             Method = Method.GET,
             Resource = apiUrl
         };
@@ -45,8 +44,7 @@ public class GraphBusinessFetcherService<TItem>
 ";
 
         request.AddHeader("Content-Type", "application/json");
-        request.AddJsonBody(new
-        {
+        request.AddJsonBody(new {
             query
         });
         var response = await client.PostAsync<TItem>(request);

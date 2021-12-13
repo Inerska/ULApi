@@ -1,39 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿// Copyright (c) Alexis Chân Gridel. All Rights Reserved.
+// Licensed under the GNU General Public License v3.0.
+// See the LICENSE file in the project root for more information.
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Moq;
+using Microsoft.Extensions.DependencyInjection;
+using System.IO;
+using System.Threading.Tasks;
 using ULApi.Controllers;
 using Xunit;
 
 namespace ULApi.Test.Controllers;
 public class NewsControllerTests
+    : IClassFixture<TestSetup>
 {
-    private readonly Mock<IConfiguration> _configuration;
-    private NewsController _controller;
+    private readonly ServiceProvider? _serviceProvider;
+    private readonly NewsController? _newsController;
 
-    /// <summary>
-    /// Test initialization, inject mock IConfiguration to News controller.
-    /// </summary>
-    public NewsControllerTests()
+    public NewsControllerTests(TestSetup testSetup)
     {
-        _configuration = new Mock<IConfiguration>();
-        _controller = new NewsController(_configuration.Object);
+        _serviceProvider = testSetup.ServiceProvider;
+        _newsController = _serviceProvider?.GetService<NewsController>();
     }
 
     [Fact]
-    public void GetMethod_WithCount_Should_Return_News()
+    public async Task Get_WithCount_Should_Return_Ok_Result()
     {
         var count = 1;
-        var response = _controller.Get(count);
+        var res = await _newsController?.GetAsync(count);
 
-        Assert.NotNull(response);
-    }
-
-    [Fact]
-    public void GetMethod_WithCount_Should_Return_OkResult()
-    {
-        var count = 1;
-        var response = _controller.Get(count);
-
-        Assert.IsType<OkObjectResult>(response.Result);
+        Assert.IsType<OkResult>(res);
     }
 }
