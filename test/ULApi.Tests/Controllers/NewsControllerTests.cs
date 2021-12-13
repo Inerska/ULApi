@@ -40,7 +40,6 @@ public class NewsControllerTests
         var res = await _newsController!.GetAsync(count);
 
         Assert.IsAssignableFrom<IEnumerable<News>>((res as OkObjectResult)!.Value);
-        var r = res as OkObjectResult;
     }
 
     [Fact]
@@ -50,5 +49,14 @@ public class NewsControllerTests
         var res = await _newsController!.GetAsync(count) as OkObjectResult;
 
         Assert.Equal(3, (res!.Value as IEnumerable<News>)!.Count());
+    }
+
+    [Fact]
+    public async Task GetAsync_WithCount_Should_Return_NotNull_Result()
+    {
+        var count = 1;
+        var res = await _newsController!.GetAsync(count) as OkObjectResult;
+
+        Assert.NotNull(res!.Value);
     }
 }
