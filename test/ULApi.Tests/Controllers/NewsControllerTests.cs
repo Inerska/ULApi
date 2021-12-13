@@ -4,7 +4,9 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using ULApi.BusinessLayer.Models;
 using ULApi.Controllers;
 using Xunit;
 
@@ -28,5 +30,14 @@ public class NewsControllerTests
         var res = await _newsController!.GetAsync(count);
 
         Assert.IsType<OkObjectResult>(res);
+    }
+
+    [Fact]
+    public async void GetAsync_WithCount_Should_Return_Valid_List_Data()
+    {
+        var count = 2;
+        var res = await _newsController!.GetAsync(count);
+
+        Assert.IsAssignableFrom<IEnumerable<News>>((res as OkObjectResult)!.Value);
     }
 }
