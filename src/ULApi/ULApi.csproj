@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ULApi.BusinessLayer\ULApi.Services.csproj" />
+    <ProjectReference Include="..\ULApi.BusinessLayer\ULApi.BusinessLayer.csproj" />
   </ItemGroup>
 
 </Project>
