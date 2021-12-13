@@ -22,6 +22,8 @@ public class NewsController
     }
 
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult> GetAsync([FromQuery] int count)
     {
         var res = await _graphBusinessFetcherService.FetchAsync();
