@@ -10,7 +10,7 @@ namespace ULApi.Controllers;
 
 [ApiController]
 [Route("/api/[controller]")]
-public class WeatherForecastController 
+public class WeatherForecastController
     : ControllerBase
 {
     private readonly ILogger<WeatherForecastController> _logger;
@@ -25,11 +25,17 @@ public class WeatherForecastController
     }
 
     [HttpGet]
-    public async Task<Root> Get()
+    public async Task<ActionResult> Get([FromQuery] int count)
     {
         var service = new GraphBusinessFetcherService<Root>(_configuration);
         var res = await service.FetchAsync();
+        var newsAggregate = res?.Data?.News;
 
-        return res;
+        if (!newsAggregate!.Any())
+        {
+            return NotFound();
+        }
+
+        return Ok(newsAggregate?.Take(count));
     }
 }
