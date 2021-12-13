@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ULApi.BusinessLayer.Models;
 using ULApi.Controllers;
@@ -20,7 +21,7 @@ public class NewsControllerTests
     public NewsControllerTests(TestSetup testSetup)
     {
         _serviceProvider = testSetup.ServiceProvider;
-        _newsController = _serviceProvider.GetService<NewsController>();
+        _newsController = _serviceProvider!.GetService<NewsController>()!;
     }
 
     [Fact]
@@ -33,11 +34,21 @@ public class NewsControllerTests
     }
 
     [Fact]
-    public async void GetAsync_WithCount_Should_Return_Valid_List_Data()
+    public async Task GetAsync_WithCount_Should_Return_Valid_List_Data()
     {
         var count = 2;
         var res = await _newsController!.GetAsync(count);
 
         Assert.IsAssignableFrom<IEnumerable<News>>((res as OkObjectResult)!.Value);
+        var r = res as OkObjectResult;
+    }
+
+    [Fact]
+    public async Task GetAsync_WithCount_Should_Return_List_Of_Data_With_Same_Count()
+    {
+        var count = 3;
+        var res = await _newsController!.GetAsync(count) as OkObjectResult;
+
+        Assert.Equal(3, (res!.Value as IEnumerable<News>)!.Count());
     }
 }
