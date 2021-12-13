@@ -7,7 +7,7 @@ namespace ULApi.BusinessLayer;
 /// <summary>
 /// Interface of server fetcher business layer.
 /// </summary>
-/// <typeparam name="TItem">Fetcher item to retrieve.</typeparam>
+/// <typeparam name="TItem">Fetched item type to retrieve.</typeparam>
 public interface IBusinessFetcherService<TItem>
 {
     /// <summary>
