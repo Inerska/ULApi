@@ -14,17 +14,20 @@ public class NewsController
     : ControllerBase
 {
     private readonly IConfiguration _configuration;
+    private readonly GraphBusinessFetcherService<Root> _graphBusinessFetcherService;
 
-    public NewsController(IConfiguration configuration)
+    public NewsController(
+        IConfiguration configuration,
+        GraphBusinessFetcherService<Root> graphBusinessFetcherService)
     {
         _configuration = configuration;
+        _graphBusinessFetcherService = graphBusinessFetcherService;
     }
 
     [HttpGet]
     public async Task<ActionResult> Get([FromQuery] int count)
     {
-        var service = new GraphBusinessFetcherService<Root>(_configuration);
-        var res = await service.FetchAsync();
+        var res = await _graphBusinessFetcherService.FetchAsync();
         var newsAggregate = res?.Data?.News;
 
         if (!newsAggregate!.Any())

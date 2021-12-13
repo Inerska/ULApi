@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Moq;
 using ULApi.Controllers;
 using Xunit;
@@ -25,5 +26,14 @@ public class NewsControllerTests
         var response = _controller.Get(count);
 
         Assert.NotNull(response);
+    }
+
+    [Fact]
+    public void GetMethod_WithCount_Should_Return_OkResult()
+    {
+        var count = 1;
+        var response = _controller.Get(count);
+
+        Assert.IsType<OkObjectResult>(response.Result);
     }
 }

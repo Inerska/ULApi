@@ -12,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddUlApiServices();
+builder.Services.AddSingleton(typeof(GraphBusinessFetcherService<>));
 
 var app = builder.Build();
 
