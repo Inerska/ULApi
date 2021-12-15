@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using RestSharp;
+using ULApi.BusinessLayer.Mappings;
 
 namespace ULApi.BusinessLayer;
 
@@ -16,12 +17,8 @@ public class GraphBusinessFetcherService<TItem>
     {
         _configuration = configuration;
     }
-    public TItem? Fetch()
-    {
-        throw new NotImplementedException();
-    }
 
-    public async Task<TItem> FetchAsync()
+    public async Task<TItem> FetchAsync(GraphMapping query)
     {
         var apiUrl = _configuration["Api:Endpoint_Base"];
         ArgumentNullException.ThrowIfNull(apiUrl);
@@ -31,17 +28,6 @@ public class GraphBusinessFetcherService<TItem>
             Method = Method.GET,
             Resource = apiUrl
         };
-        var query = @"query factuel {
-  news {
-            title
-            image
-    date
-    description
-    link
-    __typename
-  }
-    }
-";
 
         request.AddHeader("Content-Type", "application/json");
         request.AddJsonBody(new {
