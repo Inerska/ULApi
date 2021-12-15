@@ -57,8 +57,9 @@ public class NewsController
 
         var res = await _graphBusinessFetcherService.FetchAsync(query);
         var newsAggregate = res?.Data?.News;
+        var hasAny = newsAggregate?.Any() ?? false;
 
-        if (!newsAggregate!.Any())
+        if (!hasAny)
         {
             return NotFound();
         }
