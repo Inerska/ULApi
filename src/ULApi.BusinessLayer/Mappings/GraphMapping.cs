@@ -36,7 +36,7 @@ public class GraphMapping
         children._parent = this;
     }
 
-    private int ParentSize()
+    public int ParentSize()
         => _parent is not null
             ? _parent.ParentSize() + 1
             : 0;

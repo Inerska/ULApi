@@ -3,7 +3,6 @@
 // See the LICENSE file in the project root for more information.
 
 using FluentAssertions;
-using System;
 using ULApi.BusinessLayer.Mappings;
 using Xunit;
 
@@ -54,5 +53,14 @@ news{
         a1.RenderQuery().Trim().Should().Be(expected);
     }
 
+    [Fact]
+    public void Graph_ParentSize_Should_Return_RightValues()
+    {
+        var a1 = new GraphMapping("factuel", true);
+        var a2 = new GraphMapping("news");
+        a1.AddChildren(a2);
 
+        a2.ParentSize().Should().Be(1);
+        a1.ParentSize().Should().Be(0);
+    }
 }
