@@ -7,8 +7,16 @@ using ULApi.BusinessLayer.Services;
 
 namespace ULApi.BusinessLayer;
 
+/// <summary>
+/// Static class which is containing extension method to be added inside the dependency injection container.
+/// </summary>
 public static class Setup
 {
+    /// <summary>
+    /// Extension method to add Api services to the dependency injection container.
+    /// </summary>
+    /// <param name="services">Collection of services to be added.</param>
+    /// <returns>An <see cref="IServiceCollection"/> class which is collecting services to be injected.</returns>
     public static IServiceCollection AddUlApiServices(this IServiceCollection services)
         => services.AddSingleton(typeof(IBusinessFetcherService<>), typeof(GraphBusinessFetcherService<>));
 }
