@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
-using ULApi.BusinessLayer;
+using ULApi.BusinessLayer.Services;
 using ULApi.Controllers;
 
 namespace ULApi.Test;
@@ -16,19 +16,28 @@ namespace ULApi.Test;
 /// </summary>
 public class TestSetup
 {
+    /// <summary>
+    /// Service provider from the test initializer.
+    /// </summary>
     public ServiceProvider ServiceProvider { get; private set; }
+
+    /// <summary>
+    /// Fixure class which is containing the dependency injection container and the dependencies ready to be injected.
+    /// </summary>
     public TestSetup()
     {
         var serviceCollection = new ServiceCollection();
         var configuration = new ConfigurationBuilder()
                                 .SetBasePath(Directory.GetCurrentDirectory())
                                 .AddJsonFile(
-                                       path: "appsettings.json",
+                                       "appsettings.json",
                                        optional: false,
                                        reloadOnChange: true)
                                 .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
                                 .AddUserSecrets<NewsController>()
                                 .AddEnvironmentVariables()
+                                // ReSharper disable once TooManyChainedReferences
+                                // Dependency injection container contains a lot of services to be injected.
                                 .Build();
 
         serviceCollection

@@ -3,24 +3,36 @@
 // See the LICENSE file in the project root for more information.
 
 using Microsoft.AspNetCore.Mvc;
-using ULApi.BusinessLayer;
 using ULApi.BusinessLayer.Models;
+using ULApi.BusinessLayer.Services;
 
 namespace ULApi.Controllers;
 
+/// <summary>
+/// News endpoint controller.
+/// </summary>
 [ApiController]
 [Route("/api/[controller]")]
 public class NewsController
     : ControllerBase
 {
-    private readonly GraphBusinessFetcherService<NewsDataRoot> _graphBusinessFetcherService;
+    readonly private GraphBusinessFetcherService<NewsDataRoot> _graphBusinessFetcherService;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="NewsController"/> class
+    /// </summary>
+    /// <param name="graphBusinessFetcherService"></param>
     public NewsController(
         GraphBusinessFetcherService<NewsDataRoot> graphBusinessFetcherService)
     {
         _graphBusinessFetcherService = graphBusinessFetcherService;
     }
 
+    /// <summary>
+    /// Asynchronous GET method of the controller.
+    /// </summary>
+    /// <param name="count">Number of <see cref="News"/> to get.</param>
+    /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

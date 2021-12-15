@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using RestSharp;
 
-namespace ULApi.BusinessLayer;
+namespace ULApi.BusinessLayer.Services;
 
 /// <summary>
 /// Concrete implementation of Graph strategy business layer fetcher service.
@@ -12,6 +12,10 @@ public class GraphBusinessFetcherService<TItem>
 {
     private readonly IConfiguration _configuration;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GraphBusinessFetcherService{TItem}"/> class.
+    /// </summary>
+    /// <param name="configuration"></param>
     public GraphBusinessFetcherService(IConfiguration configuration)
     {
         _configuration = configuration;
@@ -24,6 +28,8 @@ public class GraphBusinessFetcherService<TItem>
     /// <returns>Response of type TItem.</returns>
     public async Task<TItem> FetchAsync(string query)
     {
+        // ReSharper disable once SettingNotFoundInConfiguration
+        // User secret Api endpoint base.
         var apiUrl = _configuration["Api:Endpoint_Base"];
         ArgumentNullException.ThrowIfNull(apiUrl);
 

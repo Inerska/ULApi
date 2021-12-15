@@ -4,12 +4,20 @@
 
 namespace ULApi.BusinessLayer.Mappings;
 
+/// <summary>
+/// Represents a Graph object relational mapping.
+/// </summary>
 public class GraphMapping
 {
-    private string _value;
+    readonly private string _value;
     private GraphMapping? _parent;
     private GraphMapping[] _children;
 
+    /// <summary>
+    /// Initializes a new instance of <see cref="GraphMapping"/> class.
+    /// </summary>
+    /// <param name="value">Value to set.</param>
+    /// <param name="isRoot">Add query keyword before.</param>
     public GraphMapping(
         string value,
         bool isRoot = false)
@@ -21,6 +29,11 @@ public class GraphMapping
         _children = Array.Empty<GraphMapping>();
     }
 
+    /// <summary>
+    /// Add a <see cref="GraphMapping"/> children to the current instance.
+    /// </summary>
+    /// <param name="children"><see cref="GraphMapping"/> instance to add.</param>
+    /// <returns>The <see cref="GraphMapping"/> children.</returns>
     public GraphMapping AddChildren(GraphMapping children)
     {
         var newChildren = new GraphMapping[_children.Length + 1];
@@ -36,6 +49,11 @@ public class GraphMapping
         return children;
     }
 
+    /// <summary>
+    /// Add a <see cref="GraphMapping"/> children to the current instance.
+    /// </summary>
+    /// <param name="value">Value of the children.</param>
+    /// <returns>The <see cref="GraphMapping"/> children.</returns>
     public GraphMapping AddChildren(string value)
     {
         var newChildren = new GraphMapping[_children.Length + 1];
@@ -53,11 +71,19 @@ public class GraphMapping
         return children;
     }
 
+    /// <summary>
+    /// The number of parents of the current instance.
+    /// </summary>
+    /// <returns></returns>
     public int ParentSize()
         => _parent is not null
             ? _parent.ParentSize() + 1
             : 0;
 
+    /// <summary>
+    /// Stringify the <see cref="GraphMapping"/> instance.
+    /// </summary>
+    /// <returns>A string that represents the current instance.</returns>
     public string RenderQuery()
     {
         var s = "";
