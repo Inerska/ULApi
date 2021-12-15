@@ -2,8 +2,6 @@
 // Licensed under the GNU General Public License v3.0.
 // See the LICENSE file in the project root for more information.
 
-using System;
-
 namespace ULApi.BusinessLayer.Mappings;
 
 public class GraphMapping
@@ -71,25 +69,27 @@ public class GraphMapping
         {
             s += _value;
         }
-        for (var i = 0; i < _children.Length; i++)
+        foreach (var t in _children)
         {
             for (var j = 0; j < ParentSize(); j++)
             {
                 s += "    ";
             }
-            s += _children[i].RenderQuery();
+            s += t.RenderQuery();
         }
-        if (_children.Length != 0)
+
+        if (_children.Length == 0)
+        {
+            return s + "\r\n";
+        }
+
         {
             for (var j = 0; j < ParentSize(); ++j)
             {
                 s += "    ";
             }
-            return s += "}\r\n";
+            return s + "}\r\n";
         }
-        else
-        {
-            return s += "\r\n";
-        }
+
     }
 }

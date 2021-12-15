@@ -15,13 +15,12 @@ namespace ULApi.Test.Controllers;
 public class NewsControllerTests
     : IClassFixture<TestSetup>
 {
-    private readonly ServiceProvider _serviceProvider;
     private readonly NewsController _newsController;
 
     public NewsControllerTests(TestSetup testSetup)
     {
-        _serviceProvider = testSetup.ServiceProvider;
-        _newsController = _serviceProvider!.GetService<NewsController>()!;
+        var serviceProvider = testSetup.ServiceProvider;
+        _newsController = serviceProvider!.GetService<NewsController>()!;
     }
 
     [Fact]

@@ -4,7 +4,6 @@
 
 using Microsoft.AspNetCore.Mvc;
 using ULApi.BusinessLayer;
-using ULApi.BusinessLayer.Mappings;
 using ULApi.BusinessLayer.Models;
 
 namespace ULApi.Controllers;
@@ -56,7 +55,7 @@ public class NewsController
         query.AddChildren(typeName);*/
 
         var res = await _graphBusinessFetcherService.FetchAsync(query);
-        var newsAggregate = res?.Data?.News;
+        var newsAggregate = res.Data?.News;
         var hasAny = newsAggregate?.Any() ?? false;
 
         if (!hasAny)
