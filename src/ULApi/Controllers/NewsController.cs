@@ -14,10 +14,10 @@ namespace ULApi.Controllers;
 public class NewsController
     : ControllerBase
 {
-    private readonly GraphBusinessFetcherService<Root> _graphBusinessFetcherService;
+    private readonly GraphBusinessFetcherService<NewsDataRoot> _graphBusinessFetcherService;
 
     public NewsController(
-        GraphBusinessFetcherService<Root> graphBusinessFetcherService)
+        GraphBusinessFetcherService<NewsDataRoot> graphBusinessFetcherService)
     {
         _graphBusinessFetcherService = graphBusinessFetcherService;
     }

@@ -30,14 +30,14 @@ public class News
     public string? Typename { get; set; }
 }
 
-public class Data
+public class NewsData
 {
     [JsonProperty("news")]
     public List<News>? News { get; set; }
 }
 
-public class Root
+public class NewsDataRoot
 {
     [JsonProperty("data")]
-    public Data? Data { get; set; }
+    public NewsData? Data { get; set; }
 }
