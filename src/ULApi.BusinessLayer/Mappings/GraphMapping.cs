@@ -12,10 +12,14 @@ public class GraphMapping
     private GraphMapping? _parent;
     private GraphMapping[] _children;
 
-    public GraphMapping(string value)
+    public GraphMapping(
+        string value,
+        bool isRoot = false)
     {
         _parent = null;
-        _value = value;
+        _value = isRoot
+            ? $"query {value}"
+            : value;
         _children = Array.Empty<GraphMapping>();
     }
 
@@ -33,16 +37,9 @@ public class GraphMapping
     }
 
     private int ParentSize()
-    {
-        if (_parent == null)
-        {
-            return 0;
-        }
-        else
-        {
-            return _parent.ParentSize() + 1;
-        }
-    }
+        => _parent is not null
+            ? _parent.ParentSize() + 1
+            : 0;
 
     public string RenderQuery()
     {
@@ -55,9 +52,9 @@ public class GraphMapping
         {
             s += _value;
         }
-        for (int i = 0; i < _children.Length; i++)
+        for (var i = 0; i < _children.Length; i++)
         {
-            for (int j = 0; j < ParentSize(); j++)
+            for (var j = 0; j < ParentSize(); j++)
             {
                 s += "    ";
             }
@@ -65,7 +62,7 @@ public class GraphMapping
         }
         if (_children.Length != 0)
         {
-            for (int j = 0; j < ParentSize(); ++j)
+            for (var j = 0; j < ParentSize(); ++j)
             {
                 s += "    ";
             }
