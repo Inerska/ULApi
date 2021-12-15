@@ -15,7 +15,8 @@ public interface IBusinessFetcherService<TItem>
     /// <summary>
     /// Asynchronous fetching data method.
     /// </summary>
+    /// <param name="query">Query to send to fetch datas.</param>
     /// <returns>Task of a fetching entity referenced as model.</returns>
-    Task<TItem> FetchAsync(GraphMapping query);
+    Task<TItem> FetchAsync(string query);
 }
 

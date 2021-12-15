@@ -23,7 +23,7 @@ public class GraphMapping
         _children = Array.Empty<GraphMapping>();
     }
 
-    public void AddChildren(GraphMapping children)
+    public GraphMapping AddChildren(GraphMapping children)
     {
         var newChildren = new GraphMapping[_children.Length + 1];
         for (var i = 0; i < _children.Length; i++)
@@ -34,6 +34,25 @@ public class GraphMapping
         newChildren[_children.Length] = children;
         _children = newChildren;
         children._parent = this;
+
+        return children;
+    }
+
+    public GraphMapping AddChildren(string value)
+    {
+        var newChildren = new GraphMapping[_children.Length + 1];
+        for (var i = 0; i < _children.Length; i++)
+        {
+            newChildren[i] = _children[i];
+        }
+
+        var children = new GraphMapping(value);
+
+        newChildren[_children.Length] = children;
+        _children = newChildren;
+        children._parent = this;
+
+        return children;
     }
 
     public int ParentSize()

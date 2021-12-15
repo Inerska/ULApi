@@ -18,7 +18,7 @@ public class GraphBusinessFetcherService<TItem>
         _configuration = configuration;
     }
 
-    public async Task<TItem> FetchAsync(GraphMapping query)
+    public async Task<TItem> FetchAsync(string query)
     {
         var apiUrl = _configuration["Api:Endpoint_Base"];
         ArgumentNullException.ThrowIfNull(apiUrl);

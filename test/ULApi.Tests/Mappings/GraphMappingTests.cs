@@ -16,8 +16,8 @@ public class GraphMappingTests
         var a2 = new GraphMapping("news");
         var a3 = new GraphMapping("3");
         var a4 = new GraphMapping("4");
-        a1.AddChildren(a2);
-        a2.AddChildren(a4);
+        a1.AddChildren(a2)
+            .AddChildren(a4);
         a1.AddChildren(a3);
         a2.AddChildren(a4);
 
@@ -38,8 +38,8 @@ news{
         var a2 = new GraphMapping("news");
         var a3 = new GraphMapping("3");
         var a4 = new GraphMapping("4");
-        a1.AddChildren(a2);
-        a2.AddChildren(a4);
+        a1.AddChildren(a2)
+          .AddChildren(a4);
         a1.AddChildren(a3);
         a2.AddChildren(a4);
 
