@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using RestSharp;
-using ULApi.BusinessLayer.Mappings;
 
 namespace ULApi.BusinessLayer;
 
@@ -18,6 +17,11 @@ public class GraphBusinessFetcherService<TItem>
         _configuration = configuration;
     }
 
+    /// <summary>
+    /// Asynchronous fetching data of TItem, sending query through POST method.
+    /// </summary>
+    /// <param name="query">Query to send through POST method.</param>
+    /// <returns>Response of type TItem.</returns>
     public async Task<TItem> FetchAsync(string query)
     {
         var apiUrl = _configuration["Api:Endpoint_Base"];

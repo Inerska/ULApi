@@ -10,6 +10,10 @@ using ULApi.BusinessLayer;
 using ULApi.Controllers;
 
 namespace ULApi.Test;
+
+/// <summary>
+/// Test initializer class, containing a Dependency Injection container to inject dependencies through all test classes.
+/// </summary>
 public class TestSetup
 {
     public ServiceProvider ServiceProvider { get; private set; }
