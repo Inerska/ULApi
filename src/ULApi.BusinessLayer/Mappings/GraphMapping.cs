@@ -9,16 +9,16 @@ namespace ULApi.BusinessLayer.Mappings;
 /// </summary>
 public class GraphMapping
 {
-    readonly private string _value;
-    private GraphMapping? _parent;
-    private GraphMapping[] _children;
+    public string Value { get; set; }
+    public GraphMapping Parent { get; set; }
+    public GraphMapping[] Children { get; set; }
 
     /// <summary>
     /// Initializes a new instance of <see cref="GraphMapping"/> class.
     /// </summary>
     /// <param name="value">Value to set.</param>
     /// <param name="isRoot">Add query keyword before.</param>
-    public GraphMapping(
+    /*public GraphMapping(
         string value,
         bool isRoot = false)
     {
@@ -27,7 +27,7 @@ public class GraphMapping
             ? $"query {value}"
             : value;
         _children = Array.Empty<GraphMapping>();
-    }
+    }*/
 
     /// <summary>
     /// Add a <see cref="GraphMapping"/> children to the current instance.
