@@ -16,7 +16,7 @@ namespace ULApi.Controllers;
 public class NewsController
     : ControllerBase
 {
-    readonly private GraphBusinessFetcherService<NewsDataRoot> _graphBusinessFetcherService;
+    private readonly GraphBusinessFetcherService<NewsDataRoot> _graphBusinessFetcherService;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="NewsController"/> class
@@ -38,7 +38,7 @@ public class NewsController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult> GetAsync([FromQuery] int count)
     {
-        var query = @"query factuel {
+        const string query = @"query factuel {
   news {
             title
             image
